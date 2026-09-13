@@ -1,0 +1,63 @@
+{
+  "id": "42",
+  "title": "Sample Scene Title",
+  "code": null,
+  "details": "A demo scene from Stash.",
+  "date": "2024-06-15",
+  "rating100": 80,
+  "o_counter": 0,
+  "play_count": 12,
+  "urls": ["https://example.com/watch/42"],
+  "files": [
+    {
+      "duration": 125.4,
+      "width": 1920,
+      "height": 1080,
+      "path": "/media/library/sample.mp4",
+      "basename": "sample.mp4"
+    }
+  ],
+  "paths": {
+    "screenshot": "http://127.0.0.1:9999/scene/42/screenshot?t=1",
+    "preview": "http://127.0.0.1:9999/scene/42/preview",
+    "stream": "http://127.0.0.1:9999/scene/42/stream?apikey=test-key"
+  },
+  "studio": {
+    "id": "7",
+    "name": "Demo Studio",
+    "image_path": "http://127.0.0.1:9999/studio/7/image",
+    "url": "https://demo.studio",
+    "scene_count": 100,
+    "details": "Studio details"
+  },
+  "tags": [
+    { "id": "1", "name": "outdoor" },
+    { "id": "2", "name": "interview" }
+  ],
+  "scene_markers": [
+    {
+      "id": "1",
+      "title": "Intro",
+      "seconds": 5,
+      "end_seconds": 20,
+      "primary_tag": { "id": "10", "name": "intro" }
+    },
+    {
+      "id": "2",
+      "title": "",
+      "seconds": 40,
+      "end_seconds": null,
+      "primary_tag": { "id": "11", "name": "kiss" }
+    }
+  ],
+  "performers": [
+    {
+      "id": "9",
+      "name": "Alex Example",
+      "image_path": "http://127.0.0.1:9999/performer/9/image",
+      "scene_count": 5,
+      "details": "Performer bio",
+      "urls": []
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+name: Hot Tub Bridge
+description: Deep-link helper for the Hot Tub bridge (Settings → copy hottub:// source URL).
+version: 1.0.0
+url: https://github.com/hottubapp/hottub-stash-bridge
+
+ui:
+  javascript:
+    - ui.js
+  csp:
+    connect-src:
+      - http://127.0.0.1:*
+      - http://localhost:*
+      - http://192.168.0.0/16:*
+      - http://10.0.0.0/8:*
+      - http://172.16.0.0/12:*
+
+settings:
+  bridgeBaseUrl:
+    displayName: Bridge base URL
+    type: STRING
+  sourceDisplayName:
+    displayName: Source display name (informational)
+    type: STRING
+
+exec:
+  - python
+  - "{pluginDir}/task.py"
+interface: raw
+errLog: error
+
+tasks:
+  - name: Show Hot Tub source URL
+    description: Print the hottub:// deep link and ping the bridge /api/status endpoint.
+    defaultArgs:
+      action: show_source_url
+
+  - name: Health-check bridge
+    description: POST /api/status on the configured bridge and report success or failure.
+    defaultArgs:
+      action: health_check

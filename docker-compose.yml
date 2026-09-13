@@ -1,0 +1,50 @@
+# Local Stash + Hot Tub bridge for end-to-end testing.
+# Usage: ./scripts/dev-up.sh
+
+services:
+  stash:
+    image: stashapp/stash:latest
+    container_name: stash-hottub-dev
+    ports:
+      - "9999:9999"
+    environment:
+      STASH_STASH: /data/
+      STASH_GENERATED: /generated/
+      STASH_METADATA: /metadata/
+      STASH_CACHE: /cache/
+      STASH_PORT: "9999"
+      TZ: America/New_York
+    volumes:
+      - ./stash-data/config:/root/.stash
+      - ./stash-data/media:/data
+      - ./stash-data/metadata:/metadata
+      - ./stash-data/cache:/cache
+      - ./stash-data/blobs:/blobs
+      - ./stash-data/generated:/generated
+      # Optional Stash UI helper (deep links)
+      - ./plugin:/root/.stash/plugins/hottub-bridge:ro
+    restart: unless-stopped
+
+  bridge:
+    build: .
+    container_name: hottub-stash-bridge
+    ports:
+      - "3099:3099"
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      STASH_URL: http://stash:9999
+      # Host-reachable URL for thumbs/streams from Hot Tub on your machine/LAN.
+      # Prefer values from .env.local (written by bootstrap).
+      STASH_PUBLIC_URL: ${STASH_PUBLIC_URL:-http://127.0.0.1:9999}
+      STASH_API_KEY: ${STASH_API_KEY:-}
+      BRIDGE_HOST: 0.0.0.0
+      BRIDGE_PORT: "3099"
+      SOURCE_ID: stash
+      SOURCE_NAME: ${SOURCE_NAME:-Stash Dev}
+      SOURCE_SUBTITLE: Local seeded Stash library
+      SOURCE_DESCRIPTION: Dev library seeded for Hot Tub bridge testing.
+    depends_on:
+      - stash
+    restart: unless-stopped

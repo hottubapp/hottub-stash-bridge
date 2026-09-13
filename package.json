@@ -1,0 +1,39 @@
+{
+  "name": "@hottubapp/hottub-stash-bridge",
+  "version": "1.0.0",
+  "description": "Hot Tub compatible video-source API bridged to a Stash GraphQL server",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": "Hot Tub App",
+  "homepage": "https://docs.hottubapp.io/developers/stash-bridge/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hottubapp/hottub-stash-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hottubapp/hottub-stash-bridge/issues"
+  },
+  "keywords": [
+    "hottub",
+    "stash",
+    "stashapp",
+    "video-source",
+    "bridge"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test test/**/*.test.js",
+    "seed:media": "bash scripts/seed-media.sh",
+    "bootstrap:stash": "node scripts/bootstrap-stash.mjs",
+    "dev:up": "bash scripts/dev-up.sh",
+    "dev:down": "docker compose down"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "fastify": "^5.2.1"
+  }
+}

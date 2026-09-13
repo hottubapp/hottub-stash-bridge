@@ -1,0 +1,9 @@
+{
+  "id": "9",
+  "name": "Alex Example",
+  "details": "Performer bio",
+  "image_path": "http://127.0.0.1:9999/performer/9/image",
+  "scene_count": 5,
+  "urls": [],
+  "favorite": true
+}
